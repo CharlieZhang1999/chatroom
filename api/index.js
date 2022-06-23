@@ -1,0 +1,1 @@
+//负责接收App.js的function call并对接给server.js/routes.js using fetch

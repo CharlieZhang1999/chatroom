@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+      integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>ChatCord App</title>
+  </head>
+  <body>
+    <div class="chat container">
+      <header class="chat header">
+        <h1><i class="fas fa-smile"></i> ChatCord</h1>
+        <button id="leave-btn" class="btn">Log Out</button>
+      </header>
+      <main class="chatmain">
+        <div class="chatmessages" id="chatmessages">
+          <div class="messages">
+            <div class="message my">
+              <div>
+                <p class="meta"> test2 <span class="time"> 2022/06/20 10:10 pm </span></p>
+                <p class="text">
+                Test
+                </p>
+            </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div class="chatcontainer">
+        <form id="chatform">
+          <input type="text" id="msg" name="content">
+          <button class="btn" id="send-button">Send</button>
+        </form>
+      </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+      integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script defer type="module" src="js/main.js"></script>
+
+  </body>
+</html>
