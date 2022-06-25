@@ -46,8 +46,10 @@ io.on('connection', socket => {
     // Listen for chat message from main.js
     // Then send signal to main.js so that main.js can append the message 
     socket.on('chatMessage', msg => {
-        io.emit('message', formatMessage(msg.username, msg.text));
+        socket.broadcast.emit('receiveMessage', formatMessage(msg.username, msg.text));
     })
+
+
 });
 
 const PORT = 3000 || process.env.PORT;

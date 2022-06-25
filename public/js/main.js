@@ -2,18 +2,30 @@ const chatForm = document.getElementById('chatform');
 const chatMessage = document.querySelector('.chatmessages');
 const logoutBtn = document.getElementById('leave-btn');
 const socket = io();
-// import formatMessage from '../../utils/message.js';
-import MessageView from './MessageView.js'
-
+import moment from 'https://unpkg.com/moment@2.29.1/dist/moment.js';
+import MessageView from './MessageView.js';
 window.onload = loadMessage;
 const user = await getUser();
 
-
-socket.on('message', message =>{
-  outputMessage(message);
-  // Automatically Do the scroll thing
+socket.on('receiveMessage', function(message){
+  const div = document.createElement('div');
+  div.classList.add("message", "other");
+  div.innerHTML =  `
+  <div>
+    <p class="meta"> ${message.username} <span class="time"> ${message.time} </span></p>
+    <p class="text">
+    ${message.text}
+    </p>
+  </div>`
+  document.querySelector(".messages").appendChild(div);
   chatMessage.scrollTop = chatMessage.scrollHeight;
 })
+
+// socket.on('message', message =>{s
+//   outputMessage(message);
+//   // Automatically Do the scroll thing
+//   chatMessage.scrollTop = chatMessage.scrollHeight;
+// })
 
 
 chatForm.addEventListener('submit', async (e) => {
@@ -28,7 +40,7 @@ chatForm.addEventListener('submit', async (e) => {
   e.target.elements.msg.focus();
 
   // append locally 
-  // sendMessage(msg);
+  sendMessage(msg);
   // append to others screen
   socket.emit('chatMessage', msg);
   
@@ -92,7 +104,12 @@ msg: {
 }
 */
 function sendMessage(msg){
-  const message = formatMessage(msg.username, msg.text);
+  const message = {
+    username:msg.username, 
+    text:msg.text,
+    time:moment(new Date()).format('YYYY/MM/D hh:mm a')
+  };
+  
   const div = document.createElement('div');
   div.classList.add("message", "my");
   div.innerHTML =  `

@@ -54,6 +54,7 @@ loginform.addEventListener('submit', async (e) => {
         return response.data;
     }catch(error){
         // Print Username is not found or Password is wrong 
+        console.log(error);
         console.log(error.response.data);
     }
 })
